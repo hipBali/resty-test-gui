@@ -111,21 +111,4 @@ post:
         └── init.lua
 ```
 
-### **Test Endpoint Structure**
-```
-.
-└── test-ui
-    └── sample
-        ├── allow.json
-        ├── api.lua
-        └── endpoints
-            ├── lua
-            │   ├── date_utils.lua
-            │   └── token_utils.lua
-            ├── one.lua
-            ├── two.lua
-            ├── three.lua
-            └── four.lua
-```
-
 
