@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif; /* Standard sans-serif font */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Light background for better readability */
+        }
+		
+		pre {
+		  
+		  border: 1px solid #ccc;
+		  padding: 10px;
+		  background-color: #fcf3cf;
+		  font-family: monospace;
+		  white-space: pre-wrap;
+		  word-wrap: break-word; 
+		  
+		  margin-top: 30px; 
+		  width: 50%; 
+		  max-width: 90%;
+		  max-height: 40%;
+		  
+		  overflow: auto;
+		  box-sizing: border-box;
+		  min-height: 100px; 
+		  margin-left: auto; 
+		  margin-right: auto; 
+		  display: block; 
+		  resize:auto;
+		}
+		
+		p {
+			font-size: 16px;
+			margin-bottom: 20px;
+			color: #555;
+			text-align: center;
+		}
+		
+		
+		h1 {
+			font-size: 24px;
+			margin-bottom: 5px;
+			color: #9999AA;
+			text-align: center;
+		}
+		
+		h2 {
+			margin-top: 0px;
+            color: #888888;
+			font-size: 20px;
+			display: inline-block; 
+			margin-right: auto;
+			display: flex; 
+			align-items: center; 
+			justify-content: space-between; 
+			// margin: 0;
+        }
+		h2 > span {
+			display: inline-block;
+			white-space: nowrap;
+			overflow: hidden; 
+			text-overflow: ellipsis; 
+		}
+
+        /* Main container for the form */
+        .container {
+			width: 50%; 
+			max-width: 80%; 
+			min-width: 300px; 
+			resize: horizontal; 
+			overflow: auto; 
+			padding: 20px; 
+			margin: 0 auto; 
+			background-color: #ffffff; 
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+			border-radius: 10px; 
+			border: 1px solid #ccc; 
+		}	
+	
+        /* Header section styling */
+        .header {
+            text-align: center; /* Center-align header content */
+            margin-bottom: 20px; /* Space below the header */
+        }
+
+        .header h1 {
+            font-size: 24px; /* Larger font size for the title */
+            color: #007bff; /* Blue color for the title */
+        }
+
+        .header p {
+            font-size: 14px; /* Smaller font size for subtitle */
+            color: #555; /* Gray color for subtitle text */
+        }
+
+        /* Form layout styling */
+        form {
+            width: 100%; /* Ensure form spans the container width */
+        }
+
+        /* Row layout for form elements */		
+		.row {
+			display: flex; /* Flexbox elrendezés */
+			align-items: center; /* Középre igazítás függőlegesen */
+			justify-content: flex-start; /* Balra igazítás */
+			gap: 10px; /* Távolság a checkbox és a label között */
+			margin-bottom: 6px; /* Add spacing between rows */
+		}
+
+        /* Column styling for form elements */
+        .col {
+            flex: 1 1 100%; /* Full width for each column */
+            padding: 10px; /* Padding inside each column */
+            box-sizing: border-box; /* Include padding and border in width */
+            display: flex; /* Flex layout for label and input alignment */
+            align-items: center; /* Vertical alignment of label and input */
+        }
+
+		
+		.form-group {
+			display: grid; /* Grid layout */
+			grid-template-columns: 200px 1fr; 
+			gap: 10px; 
+			align-items: center; 
+			width: 100%;
+		}
+
+		.form-group label {
+			text-align: right; 
+			font-weight: bold;
+			white-space: nowrap; 
+			overflow: hidden; 
+			text-overflow: ellipsis;
+			font-family: Courier New;
+		}
+
+		.form-group select {
+			width: auto;
+			max-width: 100%; 
+			white-space: nowrap;
+			overflow: hidden; 
+			text-overflow: ellipszis; 
+			padding: 4px;
+			border: 1px solid #ccc; 
+			border-radius: 5px; 
+			box-sizing: border-box; 
+		}
+
+        /* Input styling */
+        .form-group input,
+		.form-group textarea,
+		{
+            flex: 1; /* Allow inputs and select boxes to fill remaining space */
+            padding: 8px; /* Padding inside the elements */
+            border: 1px solid #ccc; /* Light border for inputs and select boxes */
+            border-radius: 5px; /* Rounded corners for aesthetics */
+            font-size: 14px; /* Standard font size */
+        }
+
+        /* Fixed width for date and number inputs */
+        .form-group input[type="number"],
+        .form-group input[type="date"]	{
+            flex: none; /* Prevent inputs from stretching */
+            width: 120px; /* Fixed width for these inputs */
+        }
+		
+		.form-group input[type="checkbox"]		{
+            flex: none; /* Prevent inputs from stretching */
+            width: 22px; /* Fixed width for these inputs */
+        }
+
+        /* Option styling for select dropdown */
+        .form-group option {
+            overflow: hidden; /* Hide overflowing text */
+            white-space: nowrap; /* Prevent text from wrapping */
+            text-overflow: ellipsis; /* Add ellipsis for long text in options */
+        }
+		
+		/* Radio group styling */
+		.radio-group {
+			display: flex; /* Flexbox for inline radio buttons */
+			gap: 10px; /* Space between radio buttons */
+			align-items: center; /* Align radio buttons vertically center */
+		}
+
+		/* Radio button labels */
+		.radio-group label {
+			display: flex; /* Keep label and radio button in one row */
+			align-items: center; /* Vertically align radio button and text */
+			font-weight: normal; /* Normal font weight for the options */
+			gap: 5px; /* Space between radio button and label text */
+		}
+
+		/* Input styling for radio buttons */
+		.radio-group input[type="radio"] {
+			margin-left: 10px; /* Remove default margin */
+			padding: 0; /* Remove default padding */
+		}
+		
+		/* Checkbox group styling */
+		.checkbox-group {
+			display: flex; /* Flexbox for inline checkbox */
+			align-items: center; /* Align checkbox vertically center */
+		}
+
+		/* Checkbox label */
+		.checkbox-group label {
+			display: flex; /* Keep checkbox and label in one row */
+			align-items: center; /* Vertically align checkbox and text */
+			gap: 5px; /* Space between checkbox and label text */
+			font-weight: normal; /* Normal font weight for the checkbox label */
+		}
+
+		/* Checkbox input styling */
+		.checkbox-group input[type="checkbox"] {
+			margin: 0; /* Remove default margin */
+			padding: 0; /* Remove default padding */
+		}
+		
+		/* Checkbox label styling */
+		.checkbox-label {
+			font-weight: normal; /* Normal font weight for the checkbox label */
+			align-self: center; /* Vertically align with checkbox */
+		}
+
+        /* Styling for focused inputs and select */
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none;
+            box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Add blue shadow for focus */
+        }
+
+        /* Container for the buttons */
+        .button-row {
+            display: flex; /* Use flexbox for alignment */
+            justify-content: space-between; /* Distribute buttons appropriately */
+            align-items: center; /* Vertically center the buttons */
+            padding: 10px;
+            // border: 1px solid #ccc; /* Optional: border for visualization */
+            background-color: #f4f4f9; /* Light background */
+        }
+
+        /* Style for buttons */
+        .btn {
+            padding: 5px 20px; /* Padding inside the buttons */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 14px; /* Font size for text */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .btn-left {
+            background-color: #007bff; /* Blue background */
+            color: #fff; /* White text */
+			margin-left: 10px;
+        }
+
+        .btn-left:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+			transform: scale(1.05);
+        }
+
+        .btn-center {
+            background-color: #28a745; /* Green background */
+            color: #fff; /* White text */
+			margin-right: 10px;
+        }
+
+        .btn-center:hover {
+            background-color: #218838; /* Darker green on hover */
+			transform: scale(1.1);
+        }
+
+        /* Footer styling */
+		footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center; /* Center-align footer content */
+			background: #f4f4f9;
+			padding: 10px 0;
+			font-size: 14px; /* Standard font size for footer text */
+			color: #888; /* Light gray color for footer text */
+		}
+		
+    </style>
+</head>
+
+<body>
+	<div style="text-align: center; margin-bottom: 20px; display: grid; width: 100%;">
+		<h1 style="margin: 0; font-size: 20px;">Openresty (REST API) test tool</h1>
+	</div>
+    <div class="container">
+        <h2>
+			<span>{{METHOD}}: {{FORMNAME}}</span>
+		</h2>
+
+        <form id="dataForm">
+            <div class="row form-group">
+                <label for="testui_servers">Servers:</label>
+                <select name="testui_servers" id="testui_servers" class="form-control">
+                    {{SERVERS}}
+                </select>
+            </div>
+			
+			{{FORMDATA}}
+			
+			
+			<div {{USE_TOKEN}}>
+				<hr style="width:100%;">
+				<div class="row">
+					<label for="toggleTokenSection">Header Token</label>
+					<input id="toggleTokenSection" name="toggleTokenSection" type="checkbox">
+				</div>
+				<!-- Token Section -->
+				<div id="tokenSection" class="row" style="display:none;margin-top: 10px; width: 100%; align-items: center; gap: 10px;">
+					<select id="tokenType" style="width: 120px; height: 35px; border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+						<option value="Bearer">Bearer</option>
+						<option value="Access">Access</option>
+					</select>
+					<textarea id="tokenValue" placeholder="Enter your token"
+							  style="flex-grow: 1; height: 35px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; width: auto;"></textarea>
+				</div>
+
+			</div>
+			
+			<div class="row">
+				<input type="hidden" id="resty_test_method" name="resty_test_method" value="{{METHOD}}"></input>
+			</div>
+			
+            <div class="button-row">
+				<button class="btn btn-left" type="button" onclick="window.location.href='{{TESTUI_PATH}}?config={{CONFIG}}'">Back</button>
+				<!-- Dropdown Content-Type -->
+				<div class="row" id="contentTypeContainer">
+					<label for="contentTypeDropdown" style="font-size:12px">Post Content-Type:</label>
+					<select id="contentTypeDropdown">
+						<option value="application/json" selected>application/json</option>
+						<option value="text/plain">text/plain</option>
+						<option value="text/html">text/html</option>
+						<option value="application/xml">application/xml</option>
+					</select>
+				</div>
+                <button class="btn btn-center" type="button" id="sendData" >Execute</button>
+            </div>
+        </form>
+        
+    </div>
+	<pre class="response-container" id="response"></pre>
+	<footer>
+		<p>&copy; 2024 <a href="https://github.com/hipbali">github.com/hipBali</a></p>
+	</footer>
+	<script>
+        // API endpoint
+        let API_URL = '{{API_URL}}';
+		const API_PATH = '{{API_PATH}}';
+		const resty_test_method = document.getElementById('resty_test_method').value;
+		
+		let currentContentType = '{{POST_CONTENT_TYPE}}'; 
+		
+		const serverSelect = document.getElementById('testui_servers');
+        // Server selection
+        serverSelect.addEventListener('change', () => {
+            const selectedValue = serverSelect.value;
+            API_URL = selectedValue;
+        });
+		
+		// Toggle visibility of the token section
+        document.getElementById('toggleTokenSection').addEventListener('click', () => {
+            const tokenSection = document.getElementById('tokenSection');
+            if (tokenSection.style.display === 'none') {
+                tokenSection.style.display = 'flex';
+            } else {
+                tokenSection.style.display = 'none';
+            }
+        });
+		
+		const method = document.getElementById("resty_test_method").value;
+		const contentTypeContainer = document.getElementById("contentTypeContainer");
+		if (method === "GET") {
+			contentTypeContainer.style.display = "none"; 
+		} else {
+			contentTypeContainer.style.display = "inline-block"; 
+		};
+		// Content type changed
+		contentTypeDropdown.addEventListener("change", function (event) {
+			currentContentType = event.target.value; // Frissítsd az aktuális Content-Type értéket
+			console.log("Selected Content-Type:", currentContentType);
+		});
+		
+			
+        document.getElementById('sendData').addEventListener('click', async () => {
+			
+			{{JSONDATA}}
+			
+			let hdr = {};
+			if (resty_test_method === 'POST') {
+				hdr = {
+						'Content-Type': currentContentType,
+						'Accept': 'application/json, text/plain, text/html, application/xml'
+				};
+			} else {
+				// GET header attributes ...
+				hdr = { 'Content-Type': 'text/plain'};
+			};
+			if (document.getElementById('toggleTokenSection').checked) {
+				if (document.getElementById('tokenType').value=="Bearer") {
+					hdr["Authorization"] = "Bearer " + document.getElementById('tokenValue').value;
+				} else {
+					hdr["x-access-token"] = document.getElementById('tokenValue').value;
+				}
+            };
+            try {
+                let response;
+                if (resty_test_method === 'GET') {
+                    const queryParams = new URLSearchParams(data).toString();
+                    response = await fetch( API_URL + API_PATH + '?' + queryParams, {
+                        method: 'GET',
+						headers: hdr,
+                    });
+                } else if (resty_test_method === 'POST') {
+					
+                    response = await fetch(API_URL + API_PATH, {
+                        method: 'POST',
+                        headers: hdr,
+                        body: JSON.stringify(data)
+                    });
+                }
+				
+                if (response.ok) {
+				
+					const responseContainer = document.getElementById('response');
+					const contentType = response.headers.get('Content-Type');
+				
+					if (contentType && contentType.includes('application/json')) {
+						const json = await response.json();
+						responseContainer.textContent = JSON.stringify(json, null, 2);
+					} else if (contentType && contentType.includes('text/plain') || 
+						contentType.includes('text/html') || contentType.includes('application/xml') 
+						) {
+						const txt = await response.text();
+						responseContainer.innerHTML = txt;
+					} else {
+						responseContainer.textContent = `Unsupported content type: ${contentType}`;
+					}
+
+                } else {
+					alert('Response error!');
+                }
+            } catch (error) {
+                alert(error);
+            }
+        });
+    </script>
+</body>
+
+</html>

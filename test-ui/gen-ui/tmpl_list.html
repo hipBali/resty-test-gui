@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+		
+		h1 {
+			font-size: 24px;
+			margin-bottom: 5px;
+			color: #9999AA;
+			text-align: center;
+		}
+
+		p {
+			font-size: 16px;
+			margin-bottom: 20px;
+			color: #555;
+			text-align: center;
+		}
+
+        table {
+            border-collapse: collapse;
+            width: 40%;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+			margin: auto; 
+        }
+
+        thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th, td {
+            padding: 6px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        th {
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        button {
+            padding: 5px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+		
+		button:disabled,
+		button[disabled]{
+		  background-color: #cccccc;
+		  color: #666666;
+		}
+
+        .btn-get {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-get:hover {
+            background-color: #0056b3;
+			transform: scale(1.1);
+        }
+
+        .btn-post {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-post:hover {
+            background-color: #1c7430;
+			transform: scale(1.1);
+        }
+		
+		footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			background: #f4f4f9;
+			padding: 10px 0;
+			font-size: 14px;
+			color: #888;
+		}
+
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 14px;
+            }
+
+            button {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+	<div style="text-align: center; margin-bottom: 20px; display: block; width: 100%;">
+		<h1 style="margin: 0; font-size: 20px;">Openresty (REST API) test tool</h1>
+	</div>
+
+	<table style="margin: 0 auto;">
+		<thead>
+			<tr>
+				<th>Method</th>
+				<th>Path</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		{{ITEMS}}
+				
+		</tbody>
+	</table>
+
+	<footer>
+		<p>&copy; 2024 <a href="https://github.com/hipbali">github.com/hipBali</a></p>
+	</footer>
+
+    <script>
+        const API_URL = '{{API_URL}}';
+        function redirectToAPI(method, path, config) {
+            const targetURL = `${API_URL}?method=${encodeURIComponent(method)}&path=${encodeURIComponent(path)}&config=${encodeURIComponent(config)}`;
+            window.location.href = targetURL;
+        }
+    </script>
+</body>
+</html>

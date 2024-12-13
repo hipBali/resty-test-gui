@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Echo Service API
+  description: A minimal echo service that returns the input parameters.
+  version: 1.0.0
+
+servers:
+  - url: https://echo.free.beeceptor.com
+    description: Free BeeCeptor server
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  /echo:
+    get:
+      summary: Echo a single parameter via GET
+      description: Returns the `test_param` parameter in the response.
+      operationId: getEcho
+      parameters:
+        - name: test_param
+          in: query
+          description: A single parameter to be echoed.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  test_param:
+                    type: string
+                example:
+                  test_param: "Hello, world!"
+        '400':
+          description: Missing or invalid parameter
+
+    post:
+      summary: Echo JSON payload via POST
+      description: Accepts a JSON object and echoes it back in the response.
+      operationId: postEcho
+      security:
+        - BearerAuth: []  # Requires Bearer token
+      requestBody:
+        description: A JSON object to be echoed
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              example:
+                key1: "value1"
+                key2: 42
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                example:
+                  key1: "value1"
+                  key2: 42
+        '400':
+          description: Invalid request body
+        '401':
+          description: Unauthorized
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
