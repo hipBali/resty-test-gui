@@ -7,6 +7,13 @@ The purpose of the application is to provide simple tools for testing REST API e
 
 ---
 
+## Requirements
+
+- [Openresty](https://openresty.org)
+- [LYAML](https://github.com/gvvaughan/lyaml)
+
+---
+
 ## Usage
 
 ### **Create a Descriptor File**
